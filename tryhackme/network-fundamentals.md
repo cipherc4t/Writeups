@@ -50,26 +50,12 @@ This report contains my writeup for the network fundamentals rooms covering OSI 
 | Use cases | HTTP, FTP, SSH | DNS, streaming, gaming |
 | Header size | 20 bytes | 8 bytes |
 
-**TCP 3-Way Handshake:**
-Client Server
-│ │
-├─── SYN ──────→│ (Client: "Let's connect")
-│ │
-│←── SYN-ACK ───┤ (Server: "OK, ready")
-│ │
-├─── ACK ──────→│ (Client: "Connected")
-│ │
-
 ### Packet structure and network topology
 
 **Packet Anatomy:**
-┌─────────────────────────────────────┐
-│ Header (Source/Dest IP, Port, etc.)│
-├─────────────────────────────────────┤
-│ Payload (Actual data being sent) │
-├─────────────────────────────────────┤
-│ Footer (Error checking) │
-└─────────────────────────────────────┘
+|Header (Source/Dest IP, Port, etc.)|
+|Payload (Actual data being sent)|
+|Footer (Error checking)|
 
 **Network Topologies:**
 - **Star:** All devices connect to central switch
@@ -93,7 +79,7 @@ Computer A: "Who has IP 192.168.1.5?"
 Computer B: "I do! My MAC is AA:BB:CC:DD:EE:FF"
 Computer A: [Stores in ARP cache]
 
-### 5. HTTP in Detail ✅
+### 5. HTTP in Detail
 
 **HTTP Methods:**
 - **GET:** Request data from server
@@ -126,12 +112,11 @@ Accept: text/html
 HTTP/1.1 200 OK
 Content-Type: text/html
 Content-Length: 1234
-
-<html>...</html> ```
+<html>...</html>
 
 ## DNS in Detail 
 
-DNS Hierarchy:
+**DNS Hierarchy:**
 
 text
 Root (.)
@@ -142,7 +127,7 @@ Domain (example.com)
   ↓
 Subdomain (www.example.com, mail.example.com)
 
-DNS Query Process:
+**DNS Query Process:**
 1. You type: www.google.com
 2. Check local DNS cache
 3. If not cached, ask DNS resolver
@@ -153,7 +138,7 @@ DNS Query Process:
 8. Browser connects to that IP
 
 
-DNS Record Types:
+**DNS Record Types:**
 
 A: Domain → IPv4 address
 
@@ -170,36 +155,27 @@ NS: Nameserver for domain
 
 ## How This Applies to Security:
 
-Port Scanning (nmap):
+**Port Scanning (nmap):**
 
-Uses TCP/UDP to probe ports
+* Uses TCP/UDP to probe ports
+* Identifies running services
+* maps network topology
+* Foundation for vulnerability assessment
 
-Identifies running services
+**Web Exploitation:**
 
-Maps network topology
+* HTTP knowledge enables SQL injection, XSS attacks
+* Understanding status codes helps identify misconfigurations
+* Cookie manipulation requires HTTP header knowledge
 
-Foundation for vulnerability assessment
+**Network Forensics:**
 
-Web Exploitation:
+* Wireshark analysis requires protocol understanding
+* Packet inspection reveals malicious traffic
+* DNS logs show C2 communication
 
-HTTP knowledge enables SQL injection, XSS attacks
+**Malware Analysis:**
 
-Understanding status codes helps identify misconfigurations
-
-Cookie manipulation requires HTTP header knowledge
-
-Network Forensics:
-
-Wireshark analysis requires protocol understanding
-
-Packet inspection reveals malicious traffic
-
-DNS logs show C2 communication
-
-Malware Analysis:
-
-Network traffic reveals malware communication
-
-DNS queries show infected hosts
-
-HTTP/HTTPS analysis exposes data exfiltration
+* Network traffic reveals malware communication
+* DNS queries show infected hosts
+* HTTP/HTTPS analysis exposes data exfiltration
